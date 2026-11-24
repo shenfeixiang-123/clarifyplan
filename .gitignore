@@ -1,0 +1,28 @@
+# secrets
+.env
+.streamlit/secrets.toml
+
+# local interaction logs (may contain what participants typed)
+logs/
+
+# python
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+
+# macOS
+.DS_Store
+
+# editor settings (local paths)
+.vscode/
+
+# generated storyboard crops
+docs/figures/crops/
+
+# local working notes and figure scripts (not submitted)
+docs/spec.md
+docs/architecture.md
+docs/figures/make_*.py
+docs/pilot/

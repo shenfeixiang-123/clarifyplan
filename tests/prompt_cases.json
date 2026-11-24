@@ -1,0 +1,183 @@
+{
+  "_comment": "Fixed cases for the extraction prompt (Lecture 09 testing loop). 'today' is fixed so relative dates have one right answer. expect maps a slot to the status it must have, or to an exact value.",
+  "today": "2026-11-18",
+  "cases": [
+    {
+      "id": "c01",
+      "text": "Help me revise next week",
+      "expect": {
+        "exam_date": "missing",
+        "subjects": "missing",
+        "daily_hours": "missing"
+      }
+    },
+    {
+      "id": "c02",
+      "text": "My maths exam is on 24 November",
+      "expect": {
+        "exam_date": "2026-11-24",
+        "subjects": [
+          "Maths"
+        ]
+      }
+    },
+    {
+      "id": "c03",
+      "text": "I can study a few hours a day",
+      "expect": {
+        "daily_hours": "ambiguous"
+      }
+    },
+    {
+      "id": "c04",
+      "text": "3 hours a day, physics and chemistry",
+      "expect": {
+        "daily_hours": 3,
+        "subjects": [
+          "Physics",
+          "Chemistry"
+        ]
+      }
+    },
+    {
+      "id": "c05",
+      "text": "exams start next Tuesday",
+      "expect": {
+        "exam_date": "2026-11-24"
+      }
+    },
+    {
+      "id": "c12",
+      "text": "my exam is the Tuesday after next",
+      "expect": {
+        "exam_date": "2026-12-01"
+      }
+    },
+    {
+      "id": "c11",
+      "text": "my first exam is on Tuesday 24 November",
+      "expect": {
+        "exam_date": "2026-11-24"
+      }
+    },
+    {
+      "id": "c06",
+      "text": "the usual subjects",
+      "expect": {
+        "subjects": "ambiguous"
+      }
+    },
+    {
+      "id": "c07",
+      "text": "Physics is the one I'm worst at",
+      "last_question": "Which subject needs the most work?",
+      "expect": {
+        "priority_subject": "Physics"
+      }
+    },
+    {
+      "id": "c08",
+      "text": "I can't study at weekends",
+      "last_question": "Is there any time you can't study?",
+      "expect": {
+        "constraints": "stated"
+      }
+    },
+    {
+      "id": "c09",
+      "text": "sometime next month",
+      "last_question": "When is your first exam?",
+      "expect": {
+        "exam_date": "ambiguous"
+      }
+    },
+    {
+      "id": "c10",
+      "text": "no",
+      "last_question": "Is there any time you can't study (for example weekends, or evenings only)?",
+      "expect": {
+        "constraints": "none"
+      }
+    },
+    {
+      "id": "c13",
+      "text": "about 2 hours on weekdays",
+      "last_question": "How many hours can you study each day?",
+      "expect": {
+        "daily_hours": 2,
+        "constraints": "stated"
+      }
+    },
+    {
+      "id": "c14",
+      "text": "I work at a cafe on Saturdays",
+      "last_question": "Is there any time you can't study (for example weekends, or evenings only)?",
+      "expect": {
+        "constraints": "stated"
+      }
+    },
+    {
+      "id": "c15",
+      "current": {
+        "subjects": [
+          "Physics"
+        ]
+      },
+      "text": "Actually I also need to revise chemistry",
+      "expect": {
+        "subjects": [
+          "Physics",
+          "Chemistry"
+        ]
+      }
+    },
+    {
+      "id": "c16",
+      "current": {
+        "subjects": [
+          "Physics",
+          "Maths"
+        ]
+      },
+      "text": "only maths, physics is done",
+      "expect": {
+        "subjects": [
+          "Maths"
+        ]
+      }
+    },
+    {
+      "id": "c17",
+      "text": "I can't study on weekday mornings because of lectures",
+      "expect": {
+        "constraints": {
+          "contains": [
+            "morning"
+          ],
+          "not_contains": [
+            "only",
+            "weekend"
+          ]
+        }
+      }
+    },
+    {
+      "id": "c18",
+      "text": "I can only manage 15 minutes a day",
+      "expect": {
+        "daily_hours": 0.25
+      }
+    },
+    {
+      "id": "c19",
+      "text": "My physics exam is on Friday and my maths exam is next Monday",
+      "expect": {
+        "exam_date": "2026-11-20",
+        "subjects": [
+          "Physics",
+          "Maths"
+        ]
+      }
+    }
+  ]
+}
